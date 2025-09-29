@@ -1,0 +1,11 @@
+{
+  "id": "devops-tools",
+  "version": "0.0.1",
+  "name": "DevOps Tools",
+  "description": "DevOps tools including Terraform, kubectl, AWS CLI, and Helm for cloud infrastructure management.",
+  "installsAfter": [
+    "ghcr.io/nikunh/001-dev-packages-vishkrm/001-dev-packages",
+    "ghcr.io/nikunh/002-user-setup-vishkrm/002-user-setup",
+    "ghcr.io/nikunh/003-zsh-setup-vishkrm/003-zsh-setup"
+  ]
+}
