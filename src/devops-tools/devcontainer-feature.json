@@ -1,6 +1,6 @@
 {
   "id": "devops-tools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "DevOps Tools",
   "description": "DevOps tools including Terraform, kubectl, AWS CLI, and Helm for cloud infrastructure management.",
   "installsAfter": [
