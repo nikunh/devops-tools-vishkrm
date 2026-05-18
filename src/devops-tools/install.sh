@@ -55,6 +55,21 @@ rm -rf aws awscliv2.zip
 echo "Installing Helm..."
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
+# Install Google Cloud CLI (gcloud + gsutil + bq) — fits alongside the other
+# cloud-CLI tools above (kubectl, terraform, AWS CLI). Uses Google's apt repo.
+echo "Installing Google Cloud CLI..."
+if ! command -v gcloud >/dev/null 2>&1; then
+    if [ ! -f /etc/apt/sources.list.d/google-cloud-sdk.list ]; then
+        curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+            | run_with_sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
+            | run_with_sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list >/dev/null
+        run_with_sudo apt-get update
+    fi
+    run_with_sudo apt-get install -y --no-install-recommends google-cloud-cli
+fi
+gcloud --version 2>&1 | head -1 || echo "Warning: gcloud verification failed"
+
 echo "DevOps tools installation completed successfully!"
 
 log_debug "=== DEVOPS-TOOLS INSTALL COMPLETED ==="
